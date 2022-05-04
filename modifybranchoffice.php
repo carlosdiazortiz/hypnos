@@ -21,7 +21,7 @@ ob_start();
                         <?=$name['address'] ?><button class="modify-button">Modifier</button>
                     </p>
                     <p><span>Description : </span>
-                        <?=$name['description'] ?><button class="modify-button">Modifier</button>
+                        <?=$name['description'] ?><button class="modify-button">Modificar</button>
                     </p>
                 </div>
                 <?php
