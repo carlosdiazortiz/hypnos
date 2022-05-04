@@ -1,6 +1,7 @@
 <?php
 require 'admin-header.html';
 require 'database_connection.php';
+require 'Branch_offices.php';
 ?>
 <!doctype html>
 <html lang="fr">
@@ -20,9 +21,14 @@ require 'database_connection.php';
             <label for="branchofficelist"></label>
             <select name="name" id="branchofficelist">
                 <option value="" selected disabled>Choisissez un établissement</option>
-                <?php foreach($pdo->query('SELECT name FROM branch_offices', PDO::FETCH_ASSOC) as $names): ?>
-                    <option value="<?= $names['name']; ?>"><?= $names['name']; ?></option>
-                <?php endforeach ?>;
+                <?php $stmt = $pdo->prepare('SELECT name FROM branch_offices');
+                if ($stmt->execute()) {
+                    while ($names = $stmt->fetchObject('Branch_offices')) {
+                        ?>
+                        <option value="<?= $names->getDisplayedName(); ?>"><?= $names->getDisplayedName(); ?></option>
+                    <?php }
+                }
+                ?>
             </select>
             <button class="select" type="submit">Afficher</button>
             <?php

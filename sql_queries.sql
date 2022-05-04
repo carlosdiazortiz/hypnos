@@ -1,0 +1,15 @@
+USE hypnos;
+CREATE TABLE IF NOT EXISTS admin (
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    fullname VARCHAR(255) NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS branch_offices (
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    city VARCHAR(50) NOT NULL,
+    address VARCHAR(100) NOT NULL,
+    description TEXT(500) NOT NULL
+);
