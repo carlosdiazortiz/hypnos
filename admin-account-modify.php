@@ -1,7 +1,7 @@
 <?php
 require 'admin-header.html';
 require 'database_connection.php';
-require 'Branch_offices.php';
+require_once 'Branch_offices.php';
 ?>
 <!doctype html>
 <html lang="fr">

@@ -1,10 +1,11 @@
 <?php
 require 'database_connection.php';
+require 'Branch_offices.php';
 ob_start();
         $stmt = $pdo->prepare('SELECT * FROM branch_offices WHERE name = :name');
         $stmt->bindValue(':name', $_POST['name'], PDO::PARAM_STR);
         if ($stmt->execute()) {
-            $name = $stmt->fetch(PDO::FETCH_ASSOC);
+            $name = $stmt->fetchObject('Branch_offices');
             if ($name === false) {
                 echo "<script>alert('problème')</script>";
             } else {
@@ -12,16 +13,16 @@ ob_start();
                 <div class="modifybranchoffice-results">
                     <h3>Résultats</h3>
                     <p><span>Nom : </span>
-                        <?=$name['name'] ?><button class="modify-button">Modifier</button>
+                        <?=$name->getDisplayedName() ?><button class="modify-button">Modifier</button>
                     </p>
                     <p><span>Ville : </span>
-                        <?=$name['city'] ?><button class="modify-button">Modifier</button>
+                        <?=$name->getDisplayedCity() ?><button class="modify-button">Modifier</button>
                     </p>
                     <p><span>Adresse : </span>
-                        <?=$name['address'] ?><button class="modify-button">Modifier</button>
+                        <?=$name->getDisplayedAddress() ?><button class="modify-button">Modifier</button>
                     </p>
                     <p><span>Description : </span>
-                        <?=$name['description'] ?><button class="modify-button">Modificar</button>
+                        <?=$name->getDisplayedDescription() ?><button class="modify-button">Modificar</button>
                     </p>
                 </div>
                 <?php
@@ -29,3 +30,4 @@ ob_start();
         }
 $contents = ob_get_clean();
 require_once 'admin-account-modify.php';
+
